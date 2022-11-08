@@ -1,0 +1,28 @@
+//Bootstrap css
+@import "~bootstrap/scss/bootstrap";
+
+@import "./default";
+
+//main navbar
+@import "./inc/navbar";
+
+//pages
+@import "./pages/home";
+@import "./pages/auth";
+
+.post-background {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("../../public/images/worker.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.search-bar {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url("../../public/images/banner/worker-type.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+//layouts
+@import "./inc/account-layout";
