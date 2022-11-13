@@ -3,7 +3,7 @@
 @section('content')
   <div class="account-layout  border">
     <div class="account-hdr bg-primary text-white border">
-      Author Section
+      Employer Section
     </div>
     <div class="account-bdy p-3">
         <div class="row mb-3">
@@ -74,7 +74,7 @@
                                           <img src="{{asset($company->logo)}}" width="100px" class="img-fluid border p-2" alt="">
                                           <h5>{{$company->title}}</h5>
                                           <small>{{$company->getCategory->category_name}}</small>
-                                        <a class="d-block" href="{{$company->website}}"><i class="fas fa-globe"></i></a>
+                                        <a class="d-block" target="_blank" href="{{$company->website}}"><i class="fas fa-globe"></i></a>
                                       </div>
                                   </div>
                               </div>

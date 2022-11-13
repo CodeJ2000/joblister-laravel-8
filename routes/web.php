@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\Auth\AdminController;
-use App\Http\Controllers\Auth\AuthorController;
-use App\Http\Controllers\CompanyCategoryController;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\JobApplicationController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\savedJobController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\Auth\AuthorController;
+use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\CompanyCategoryController;
 
 //public routes
 Route::get('/', [PostController::class, 'index'])->name('post.index');
@@ -26,7 +27,12 @@ Route::middleware('auth')->prefix('account')->group(function () {
   Route::get('overview', [AccountController::class, 'index'])->name('account.index');
   Route::get('deactivate', [AccountController::class, 'deactivateView'])->name('account.deactivate');
   Route::get('change-password', [AccountController::class, 'changePasswordView'])->name('account.changePassword');
+
+  Route::get('update-profile', [AccountController::class, 'updateProfileView'])->name('account.updateProfile');
+  
   Route::delete('delete', [AccountController::class, 'deleteAccount'])->name('account.delete');
+ 
+  Route::put('update-profile{user}', [AccountController::class, 'updateProfile'])->name('account.update-profile');
   Route::put('change-password', [AccountController::class, 'changePassword'])->name('account.changePassword');
   //savedJobs
   Route::get('my-saved-jobs', [savedJobController::class, 'index'])->name('savedJob.index');

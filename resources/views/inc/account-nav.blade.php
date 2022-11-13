@@ -15,7 +15,7 @@
     @role('author')
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'author-section' ? 'active': ''}}">
       <a href="{{route('account.authorSection')}}" class="account-nav-link">
-        <i class="fas fa-chart-line"></i> Author Section
+        <i class="fas fa-chart-line"></i> Employer Section
     </li>
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'post' && request()->segment(3) == 'create' ? 'active': ''}}">
       <a href="{{route('post.create')}}" class="account-nav-link">

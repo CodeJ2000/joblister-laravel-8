@@ -2,17 +2,30 @@
 
 @section('content')
 <div class="account-layoutborder">
+  @role('user')
   <div class="account-hdr bg-primary text-white border ">
-    User Account
-  </div>
+    Jobseeker Account
+</div>
+@endrole
+@role('author')
+<div class="account-hdr bg-primary text-white border ">
+  Employer Account
+</div>
+@endrole
+@role('admin')
+<div class="account-hdr bg-primary text-white border ">
+  Administrator Account
+</div>
+@endrole
   <div class="account-bdy border py-3">
     <div class="row container d-flex justify-content-center">
         <div class="col-xl-12 col-md-12">
             <div class="card user-card-full">
                 <div class="row m-l-0 m-r-0">
-                    <div class="col-sm-4 bg-c-lite-green user-profile">
+                    <div class="col-sm-4  user-profile">
                         <div class="card-block text-center text-white">
-                            <div class="m-b-25"> <img src="{{asset('images/user-profile.png')}}" class="img-radius" alt="User-Profile-Image"> </div>
+                            <div class="m-b-25 "> <img src="{{asset(auth()->user()->image ? auth()->user()->image  : 'images/user-profile.png')}}" class="img-radius border" style="max-width: 150px; height: 135px" alt="User-Profile-Image"> </div>
+                            <div></div>
                             <h6 class="f-w-600">{{auth()->user()->name}}</h6>
                             @role('user')
                             <p>User</p> 
@@ -20,6 +33,7 @@
                             @role('admin')
                             <p>Author (Job Lister) <i class="fas fa-pen-square"></i></p> 
                             @endrole
+                            <a href="{{ route('account.updateProfile') }}" class="btn primary-outline-btn">Update Profile</a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -38,7 +52,7 @@
                             <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account</h6>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <p class="m-b-10 f-w-600">Password</p>
+                                    <p class="m-b-10 f-w-600">Change password</p>
                                     <a href="{{route('account.changePassword')}}" class="btn primary-outline-btn">Change password</a>
                                 </div>
                                 <div class="col-sm-6">

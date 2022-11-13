@@ -64,7 +64,7 @@ class CompanyController extends Controller
 
         $company = auth()->user()->company;
         if ($this->companyUpdate($company, $request)) {
-            Alert::toast('Company created!', 'success');
+            Alert::toast('Company Edited!', 'success');
             return redirect()->route('account.authorSection');
         }
         Alert::toast('Failed!', 'error');
@@ -87,7 +87,7 @@ class CompanyController extends Controller
         return $request->validate([
             'title' => 'required|min:5',
             'description' => 'required|min:5',
-            'logo' => 'someiimes|image|max:2999',
+            'logo' => 'sometimes|image|max:2999',
             'category' => 'required',
             'website' => 'required|string',
             'cover_img' => 'sometimes|image|max:3999'
@@ -107,7 +107,7 @@ class CompanyController extends Controller
         if ($company->logo) {
             Storage::delete('public/companies/logos/' . basename($company->logo));
         }
-        $company->logo = 'storage/companies/logos/' . $fileNameToStore;
+        $company->logo = 'storage/public/companies/logos/' . $fileNameToStore;
 
         //cover image 
         if ($request->hasFile('cover_img')) {
@@ -116,7 +116,7 @@ class CompanyController extends Controller
             if ($company->cover_img) {
                 Storage::delete('public/companies/cover/' . basename($company->cover_img));
             }
-            $company->cover_img = 'storage/companies/cover/' . $fileNameToStore;
+            $company->cover_img = 'storage/public/companies/cover/' . $fileNameToStore;
         } else {
             $company->cover_img = 'nocover';
         }
@@ -142,7 +142,7 @@ class CompanyController extends Controller
             if ($company->logo) {
                 Storage::delete('public/companies/logos/' . basename($company->logo));
             }
-            $company->logo = 'storage/companies/logos/' . $fileNameToStore;
+            $company->logo = 'storage/public/companies/logos/' . $fileNameToStore;
         }
 
         //cover image 
@@ -152,9 +152,10 @@ class CompanyController extends Controller
             if ($company->cover_img) {
                 Storage::delete('public/companies/cover/' . basename($company->cover_img));
             }
-            $company->cover_img = 'storage/companies/cover/' . $fileNameToStore;
+            $company->cover_img = 'storage/public/companies/cover/' . $fileNameToStore;
+        } else {
+            $company->cover_img = 'nocover';
         }
-        $company->cover_img = 'nocover';
         if ($company->save()) {
             return true;
         }

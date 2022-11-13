@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JobApplication;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\JobApplication;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AccountController extends Controller
@@ -72,6 +74,39 @@ class AccountController extends Controller
         return view('account.change-password');
     }
 
+    public function updateProfileView()
+    {
+        return view('account.update-profile');
+    }
+    public function updateProfile(Request $request)
+    {
+        
+        // dd(request()->all());
+      
+        // $request->validate([
+        //     'image' => 'required|image'
+        // ]);
+        $user = Auth::user();
+        // $user->image = $request['image'];
+        // $user->save();
+        //logo should exist but still checking for the name
+
+        if ($request->hasFile('image')) {
+            $fileNameToStore = $this->getFileName($request->file('image'));
+            $logoPath = $request->file('image')->storeAs('public/companies/profile', $fileNameToStore);
+            if ($user->image) {
+                Storage::delete('public/companies/profile/' . basename($user->image));
+            }
+            $user->image = 'storage/public/companies/profile/' . $fileNameToStore;
+        }
+        if ($user->save()) {
+            Alert::toast('Profile updated!', 'success');
+            return redirect()->route('account.index');
+        }
+        Alert::toast('Failed!', 'error');
+        return redirect()->route('account.updateProfile');
+       
+    }   
     public function changePassword(Request $request)
     {
         if (!auth()->user()) {
@@ -108,6 +143,14 @@ class AccountController extends Controller
         }
         return redirect()->back();
     }
+    protected function getFileName($file)
+    {
+        $fileName = $file->getClientOriginalName();
+        $actualFileName = pathinfo($fileName, PATHINFO_FILENAME);
+        $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+        return $actualFileName . time() . '.' . $fileExtension;
+    }
+
 
     public function deactivateView()
     {

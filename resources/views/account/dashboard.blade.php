@@ -3,7 +3,7 @@
 @section('content')
   <div class="account-layout  border">
     <div class="account-hdr bg-primary text-white border" >
-      Dashboard
+    Admin Dashboard
     </div>
     <div class="account-bdy p-3">
         <div class="row mb-3">
@@ -13,7 +13,7 @@
                       <div class="rotate">
                           <i class="fas fa-users fa-4x"></i>
                       </div>
-                      <h6 class="text-uppercase">Users</h6>
+                      <h6 class="text-uppercase">Jobseeker(s)</h6>
                       <h1 class="">{{$dashCount['user']}}</h1>
                   </div>
               </div>
@@ -35,7 +35,7 @@
                       <div class="rotate">
                           <i class="fas fa-user-tie fa-4x"></i>
                       </div>
-                      <h6 class="text-uppercase">Authors</h6>
+                      <h6 class="text-uppercase">Employer(s)</h6>
                       <h1 class="">{{$dashCount['author']}}</h1>
                   </div>
               </div>
@@ -67,7 +67,7 @@
       <section class="dashboard-authors my-5">
         <div class="row my-4">
           <div class="col-lg-12 col-md-8 col-sm-12">
-            <h4 class="card-title text-secondary">Manage Authors (Job listers) </h4>
+            <h4 class="card-title text-secondary">Manage Employer (Job listers) </h4>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="thead-inverse">
@@ -107,7 +107,7 @@
       </section>
       <hr>
     
-      <section class="dashboard-company">
+      {{-- <section class="dashboard-company">
           <h4 class="card-title text-secondary">Manage Roles and Categories</h4>
           <div class="row my-4">
             <div class="col-sm-12 col-md-12">
@@ -254,7 +254,7 @@
                 </div>
             </div>
           </div>
-      </section>
+      </section> --}}
     </div>
   </div>
 @endSection
