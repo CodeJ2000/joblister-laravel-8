@@ -15,14 +15,28 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-3">
-                <img src="{{asset('images/user-profile.png')}}" class="img-fluid rounded-circle" alt="">
+              <div class="col-3 ">
+                <img src="{{asset($applicant->profile->image ? $applicant->profile->image : 'images/user-profile.png')}}" class="border img-fluid rounded-circle" alt="">
               </div>
               <div class="col-9">
                 <h6 class="text-info text-capitalize">{{$applicant->name}}</h6>
-                <p class="my-2"><i class="fas fa-envelope"></i> Email: {{$applicant->email}}</p>
-                <a href="mailto:{{$applicant->email}}" class="btn primary-btn" title="click to send email">Send user an email</a>
+                <p class="my-2"><strong>Email: </strong>  {{$applicant->email}}</p>
+                <p class="my-2"><strong>Home Address: </strong> {{$applicant->profile->address}}</p>
+                <p class="my-2"><strong>Contact Number: </strong> {{$applicant->profile->contact_number}}</p>
+                <p class="my-2"><strong>Gender: </strong> {{$applicant->profile->gender}}</p>
+
               </div>
+            </div>
+           
+            <div class="row">
+              <div class="col-3">
+              </div>
+              <div class="col-9">
+                <a href="mailto:{{$applicant->email}}" class="btn primary-btn" title="click to send email">Send user an email</a>
+                <a target="_blank" href="/{{ $applicant->profile->resume_file }}" class="btn primary-btn" title="click to send email">View CV</a>
+              </div>
+              
+              
             </div>
           </div>
         </div>

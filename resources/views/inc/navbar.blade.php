@@ -13,7 +13,7 @@
         <li class="nav-item dropdown dropdown-left"> 
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
           <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{auth()->user()->name}}</span> 
-            <img class="img-profile rounded-circle" src="{{asset(auth()->user()->image ? auth()->user()->image  : 'images/user-profile.png')}}" width="40px" height="40px"> 
+            <img class="img-profile rounded-circle" src="{{asset(auth()->user()->profile->image ? auth()->user()->profile->image  : 'images/user-profile.png')}}" width="40px" height="40px"> 
           </a>
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown"> 
             @role('admin')
@@ -33,7 +33,9 @@
         </li>
         @endauth
         @guest
-        <a href="/login" class=" px-4 btn primary-btn">Log in</a>
+        <a href="/login" class="mr-2 px-4 btn primary-btn">Log in</a>
+        <a href="/register" class=" px-4 btn primary-btn">SignUp</a>
+
         @endguest
       </ul>
     </div>

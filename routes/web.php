@@ -27,12 +27,11 @@ Route::middleware('auth')->prefix('account')->group(function () {
   Route::get('overview', [AccountController::class, 'index'])->name('account.index');
   Route::get('deactivate', [AccountController::class, 'deactivateView'])->name('account.deactivate');
   Route::get('change-password', [AccountController::class, 'changePasswordView'])->name('account.changePassword');
-
-  Route::get('update-profile', [AccountController::class, 'updateProfileView'])->name('account.updateProfile');
-  
   Route::delete('delete', [AccountController::class, 'deleteAccount'])->name('account.delete');
- 
-  Route::put('update-profile{user}', [AccountController::class, 'updateProfile'])->name('account.update-profile');
+
+  route::get('profile/{user}/edit', [ProfilesController::class, 'edit'])->name('profile.edit');
+  route::patch('profile/{user}', [ProfilesController::class, 'update'])->name('profile.update');
+  route::get('profile/{user}', [ProfilesController::class, 'show'])->name('profile,show');
   Route::put('change-password', [AccountController::class, 'changePassword'])->name('account.changePassword');
   //savedJobs
   Route::get('my-saved-jobs', [savedJobController::class, 'index'])->name('savedJob.index');

@@ -8,7 +8,7 @@
     <div class="account-bdy p-3">
      <form action="{{route('company.update',['id'=>$company])}}" method="POST" enctype="multipart/form-data">
       @if($errors->any())
-        {{ implode('', $errors->all('<div>:message</div>')) }}
+        {{ implode('', $errors->all(`<div>:message</div>`)) }}
     @endif
 
         @csrf

@@ -24,7 +24,7 @@
                 <div class="row m-l-0 m-r-0">
                     <div class="col-sm-4  user-profile">
                         <div class="card-block text-center text-white">
-                            <div class="m-b-25 "> <img src="{{asset(auth()->user()->image ? auth()->user()->image  : 'images/user-profile.png')}}" class="img-radius border" style="max-width: 150px; height: 135px" alt="User-Profile-Image"> </div>
+                            <div class="m-b-25 "> <img src="{{asset(auth()->user()->profile->image ? auth()->user()->profile->image  : 'images/user-profile.png')}}" class="img-radius border" style="max-width: 150px; height: 135px" alt="User-Profile-Image"> </div>
                             <div></div>
                             <h6 class="f-w-600">{{auth()->user()->name}}</h6>
                             @role('user')
@@ -33,7 +33,7 @@
                             @role('admin')
                             <p>Author (Job Lister) <i class="fas fa-pen-square"></i></p> 
                             @endrole
-                            <a href="{{ route('account.updateProfile') }}" class="btn primary-outline-btn">Update Profile</a>
+                            <a href="{{ route('profile.edit', auth()->user()->id) }}" class="btn primary-outline-btn">Update Profile</a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <p class="m-b-10 f-w-600">Phone</p>
-                                    <h6 class="text-muted f-w-400">not set</h6>
+                                    <h6 class="text-muted f-w-400">{{ auth()->user()->profile->contact_number }}</h6>
                                 </div>
                             </div>
                             <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account</h6>
